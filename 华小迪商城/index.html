@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>华小迪积分商城 - 主页</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+			}
+
+			body {
+				background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+				color: #333;
+				line-height: 1.6;
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 20px;
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			}
+
+			header {
+				text-align: center;
+				margin-bottom: 40px;
+			}
+
+			.header-title {
+				font-size: 36px;
+				color: #6e8efb;
+				margin-bottom: 10px;
+				font-weight: 700;
+			}
+
+			.header-subtitle {
+				font-size: 18px;
+				color: #777;
+				max-width: 600px;
+				margin: 0 auto;
+			}
+
+			.main-content {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 50px;
+			}
+
+			.logo-section {
+				text-align: center;
+			}
+
+			.logo-container {
+				width: 200px;
+				height: 200px;
+				margin: 0 auto 30px;
+				border-radius: 20px;
+				background: white;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				overflow: hidden;
+			}
+
+			.logo-container img {
+				max-width: 80%;
+				max-height: 80%;
+				object-fit: contain;
+			}
+
+			.logo-text {
+				font-size: 24px;
+				font-weight: bold;
+				color: #6e8efb;
+			}
+
+			.action-section {
+				text-align: center;
+			}
+
+			.btn-primary {
+				background: linear-gradient(135deg, #6e8efb, #a777e3);
+				color: white;
+				border: none;
+				padding: 15px 40px;
+				border-radius: 50px;
+				font-size: 18px;
+				font-weight: bold;
+				cursor: pointer;
+				transition: all 0.3s;
+				box-shadow: 0 5px 15px rgba(110, 142, 251, 0.4);
+			}
+
+			.btn-primary:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 8px 20px rgba(110, 142, 251, 0.6);
+			}
+
+			.btn-primary:active {
+				transform: translateY(1px);
+			}
+
+			.features {
+				display: flex;
+				justify-content: center;
+				gap: 40px;
+				margin-top: 50px;
+				flex-wrap: wrap;
+			}
+
+			.feature-card {
+				background: white;
+				border-radius: 15px;
+				padding: 25px;
+				width: 250px;
+				text-align: center;
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+				transition: transform 0.3s;
+			}
+
+			.feature-card:hover {
+				transform: translateY(-5px);
+			}
+
+			.feature-icon {
+				font-size: 40px;
+				margin-bottom: 15px;
+				color: #6e8efb;
+			}
+
+			.feature-title {
+				font-size: 18px;
+				font-weight: bold;
+				margin-bottom: 10px;
+				color: #444;
+			}
+
+			.feature-desc {
+				font-size: 14px;
+				color: #777;
+			}
+
+			footer {
+				text-align: center;
+				color: #777;
+				padding: 30px 20px;
+				margin-top: 60px;
+				border-top: 1px solid rgba(0, 0, 0, 0.05);
+			}
+
+			@media (max-width: 768px) {
+				.header-title {
+					font-size: 28px;
+				}
+
+				.header-subtitle {
+					font-size: 16px;
+				}
+
+				.logo-container {
+					width: 150px;
+					height: 150px;
+				}
+
+				.features {
+					gap: 20px;
+				}
+
+				.feature-card {
+					width: 100%;
+					max-width: 300px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<h1 class="header-title">华小迪积分商城</h1>
+				<p class="header-subtitle">通过参与公司活动赚取积分，兑换心仪好礼，让您的努力更有价值</p>
+			</header>
+
+			<div class="main-content">
+				<div class="logo-section">
+					<div class="logo-container">
+						<!-- 请在此处替换为实际Logo图片路径 -->
+						<!-- <img src="images/hua-logo.png" alt="华小迪Logo"> -->
+						<div class="logo-text">华小迪</div>
+					</div>
+					<h2>欢迎来到华小迪积分商城</h2>
+				</div>
+
+				<div class="action-section">
+					<button class="btn-primary" onclick="enterMall()">进入积分商城</button>
+				</div>
+
+				<div class="features">
+					<div class="feature-card">
+						<div class="feature-icon">🎁</div>
+						<h3 class="feature-title">丰富礼品</h3>
+						<p class="feature-desc">精选各类实用商品，从电子产品到生活用品，满足不同需求</p>
+					</div>
+
+					<div class="feature-card">
+						<div class="feature-icon">⭐</div>
+						<h3 class="feature-title">轻松赚取</h3>
+						<p class="feature-desc">参与公司活动即可获得积分，让您的付出得到额外回报</p>
+					</div>
+
+					<div class="feature-card">
+						<div class="feature-icon">🚚</div>
+						<h3 class="feature-title">便捷兑换</h3>
+						<p class="feature-desc">简单几步完成兑换，礼品直接送到您手中，省时省力</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer>
+			<p>华小迪积分商城 &copy; 2023 版权所有 | 客服热线：400-123-4567</p>
+		</footer>
+
+		<script>
+			function enterMall() {
+				window.location.href = "points-mall.html";
+				// 在实际使用中，请取消注释上面的代码并注释掉alert
+			}
+
+			// 添加一些简单的动画效果
+			document.addEventListener('DOMContentLoaded', function() {
+				const featureCards = document.querySelectorAll('.feature-card');
+
+				featureCards.forEach((card, index) => {
+					// 为每个卡片添加延迟动画
+					card.style.opacity = '0';
+					card.style.transform = 'translateY(20px)';
+
+					setTimeout(() => {
+						card.style.transition = 'opacity 0.5s, transform 0.5s';
+						card.style.opacity = '1';
+						card.style.transform = 'translateY(0)';
+					}, 300 + index * 200);
+				});
+			});
+		</script>
+	</body>
+</html>

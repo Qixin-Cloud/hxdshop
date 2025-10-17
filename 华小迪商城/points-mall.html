@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>华小迪商城</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+			}
+
+			body {
+				background-color: #f7f9fc;
+				color: #333;
+				line-height: 1.6;
+			}
+
+			.container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 20px;
+			}
+
+			header {
+				background: linear-gradient(135deg, #6e8efb, #a777e3);
+				color: white;
+				padding: 25px 0;
+				border-radius: 12px;
+				margin-bottom: 30px;
+				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+			}
+
+			.header-content {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 0 30px;
+			}
+
+			.logo {
+				display: flex;
+				align-items: center;
+			}
+
+			.logo-img {
+				width: 60px;
+				height: 60px;
+				border-radius: 8px;
+				margin-right: 15px;
+				background-color: rgba(255, 255, 255, 0.2);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				overflow: hidden;
+			}
+
+			.logo-img img {
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+			}
+
+			.logo h1 {
+				font-size: 28px;
+			}
+
+			.user-info {
+				display: flex;
+				align-items: center;
+			}
+
+			.user-avatar {
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				background-color: white;
+				margin-right: 15px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: #6e8efb;
+				font-weight: bold;
+				font-size: 20px;
+			}
+
+			.main-content {
+				display: flex;
+				gap: 30px;
+			}
+
+			.sidebar {
+				flex: 0 0 250px;
+				background: white;
+				border-radius: 12px;
+				padding: 25px;
+				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+			}
+
+			.sidebar h2 {
+				color: #6e8efb;
+				margin-bottom: 20px;
+				padding-bottom: 10px;
+				border-bottom: 2px solid #f0f0f0;
+			}
+
+			.category-list {
+				list-style: none;
+			}
+
+			.category-list li {
+				padding: 12px 15px;
+				margin-bottom: 8px;
+				border-radius: 8px;
+				cursor: pointer;
+				transition: all 0.3s;
+			}
+
+			.category-list li:hover,
+			.category-list li.active {
+				background-color: #6e8efb;
+				color: white;
+			}
+
+			.category-list a {
+				text-decoration: none;
+				color: inherit;
+				display: block;
+			}
+
+			.products-section {
+				flex: 1;
+			}
+
+			.section-title {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 25px;
+			}
+
+			.section-title h2 {
+				color: #444;
+				font-size: 24px;
+			}
+
+			.search-box {
+				display: flex;
+			}
+
+			.search-box input {
+				padding: 12px 15px;
+				border: 1px solid #ddd;
+				border-radius: 8px 0 0 8px;
+				width: 250px;
+				outline: none;
+				transition: border 0.3s;
+			}
+
+			.search-box input:focus {
+				border-color: #6e8efb;
+			}
+
+			.search-box button {
+				background: #6e8efb;
+				color: white;
+				border: none;
+				padding: 0 20px;
+				border-radius: 0 8px 8px 0;
+				cursor: pointer;
+				transition: background 0.3s;
+			}
+
+			.search-box button:hover {
+				background: #5a7dfa;
+			}
+
+			.products-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+				gap: 25px;
+			}
+
+			.product-card {
+				background: white;
+				border-radius: 12px;
+				overflow: hidden;
+				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+				transition: transform 0.3s, box-shadow 0.3s;
+			}
+
+			.product-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+			}
+
+			.product-image {
+				height: 180px;
+				background-color: #f5f7fa;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				overflow: hidden;
+			}
+
+			.product-image img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+
+			.product-info {
+				padding: 20px;
+			}
+
+			.product-title {
+				font-size: 18px;
+				margin-bottom: 10px;
+				color: #444;
+			}
+
+			.product-description {
+				color: #777;
+				font-size: 14px;
+				margin-bottom: 15px;
+				height: 40px;
+				overflow: hidden;
+			}
+
+			.product-footer {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.product-points {
+				color: #ff6b6b;
+				font-weight: bold;
+				font-size: 18px;
+			}
+
+			.exchange-btn {
+				background: #6e8efb;
+				color: white;
+				border: none;
+				padding: 8px 15px;
+				border-radius: 6px;
+				cursor: pointer;
+				transition: background 0.3s;
+			}
+
+			.exchange-btn:hover {
+				background: #5a7dfa;
+			}
+
+			.exchange-btn:disabled {
+				background: #ccc;
+				cursor: not-allowed;
+			}
+
+			/* 金币规则页面样式 */
+			.rules-section {
+				display: none;
+				background: white;
+				border-radius: 12px;
+				padding: 30px;
+				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+				margin-bottom: 25px;
+			}
+
+			.rules-section.active {
+				display: block;
+			}
+
+			.rules-section h2 {
+				color: #6e8efb;
+				margin-bottom: 20px;
+				padding-bottom: 10px;
+				border-bottom: 2px solid #f0f0f0;
+			}
+
+			.rules-content {
+				line-height: 1.8;
+			}
+
+			.rules-content p {
+				margin-bottom: 15px;
+			}
+
+			.rules-content ul {
+				margin-left: 20px;
+				margin-bottom: 20px;
+			}
+
+			.rules-content li {
+				margin-bottom: 10px;
+			}
+
+			.back-btn {
+				background: #6e8efb;
+				color: white;
+				border: none;
+				padding: 10px 20px;
+				border-radius: 6px;
+				cursor: pointer;
+				margin-top: 20px;
+				transition: background 0.3s;
+			}
+
+			.back-btn:hover {
+				background: #5a7dfa;
+			}
+
+			footer {
+				margin-top: 50px;
+				text-align: center;
+				color: #777;
+				padding: 20px;
+				border-top: 1px solid #eee;
+			}
+
+			@media (max-width: 768px) {
+				.main-content {
+					flex-direction: column;
+				}
+
+				.sidebar {
+					flex: none;
+				}
+
+				.header-content {
+					flex-direction: column;
+					text-align: center;
+				}
+
+				.logo {
+					margin-bottom: 15px;
+				}
+
+				.products-grid {
+					grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<div class="header-content">
+					<div class="logo">
+						<div class="logo-img">
+							<img src="img/huaxiaodibaizi.png" alt="华小迪Logo">
+
+						</div>
+						<h1>华小迪商城</h1>
+					</div>
+					<div class="user-info">
+						<div>Welcome，华小迪</div>
+					</div>
+				</div>
+			</header>
+
+			<div class="main-content">
+				<aside class="sidebar">
+					<h2>商品分类</h2>
+					<ul class="category-list">
+						<li class="active" data-category="all">全部商品</li>
+						<li data-category="electronics">电子产品</li>
+						<li data-category="home">家居用品</li>
+						<li data-category="fashion">时尚配饰</li>
+						<li data-category="food">食品饮料</li>
+						<li data-category="books">图书文具</li>
+						<li data-category="virtual">虚拟商品</li>
+					</ul>
+
+					<h2 style="margin-top: 30px;">金币规则</h2>
+					<ul class="category-list">
+						<li><a href="#" class="rule-link" data-rule="points-earn">金币获取方式</a></li>
+						<li><a href="#" class="rule-link" data-rule="points-validity">金币有效期</a></li>
+						<li><a href="#" class="rule-link" data-rule="exchange-rules">兑换规则</a></li>
+						<li><a href="#" class="rule-link" data-rule="faq">常见问题</a></li>
+					</ul>
+				</aside>
+
+				<main class="products-section">
+					<div class="section-title">
+						<h2>热门兑换商品</h2>
+						<div class="search-box">
+							<input type="text" placeholder="搜索商品...">
+							<button>搜索</button>
+						</div>
+					</div>
+
+					<!-- 金币规则页面 -->
+					<div id="points-earn" class="rules-section">
+						<h2>金币获取方式</h2>
+						<div class="rules-content">
+							<!-- 请在此处填写金币获取方式的文本内容 -->
+							<p>关于如何获取金币的详细说明...</p>
+							<ul>
+								<li>培训会答题
+								<p>每道题：5枚华小迪金币</p>
+								</li>
+								<li>小游戏前三名奖励
+								<p>第一名：10枚华小迪金币</p>
+								<p>第二名：7枚华小迪金币</p>
+								<p>第三名：5枚华小迪金币</p>
+								</li>
+								<li>其他活动奖励</li>
+							</ul>
+							<p>更多获取金币的方式，请关注我们的官方公告。</p>
+						</div>
+						<button class="back-btn">返回商品列表</button>
+					</div>
+
+					<div id="points-validity" class="rules-section">
+						<h2>金币有效期</h2>
+						<div class="rules-content">
+							<!-- 请在此处填写金币有效期的文本内容 -->
+							<p>关于金币有效期的详细说明...</p>
+							<p>金币有效期为自获得之日起长期有效。</p>
+						</div>
+						<button class="back-btn">返回商品列表</button>
+					</div>
+
+					<div id="exchange-rules" class="rules-section">
+						<h2>兑换规则</h2>
+						<div class="rules-content">
+							<!-- 请在此处填写兑换规则的文本内容 -->
+							<p>关于兑换规则的详细说明...</p>
+							<ul>
+								<li>金币不可转让、不可兑换现金</li>
+								<li>金币兑换商品后，金币将自动扣除</li>
+								<li>兑换商品不支持退换货</li>
+								<li>金币兑换商品数量有限，先到先得</li>
+								<li>如遇商品缺货，可联系工作人员更换其他等值商品</li>
+							</ul>
+						</div>
+						<button class="back-btn">返回商品列表</button>
+					</div>
+
+					<div id="faq" class="rules-section">
+						<h2>常见问题</h2>
+						<div class="rules-content">
+							<!-- 请在此处填写常见问题的文本内容 -->
+							<p>常见问题的详细说明...</p>
+							<h3>Q: 金币如何查询？</h3>
+							<p>A: 登录账户后，在个人中心可以查看当前金币。</p>
+
+							<h3>Q: 金币可以合并使用吗？</h3>
+							<p>A: 可以，金币可以累积使用，兑换更高价值的商品。</p>
+
+							<h3>Q: 金币兑换的商品有质量问题怎么办？</h3>
+							<p>A: 如兑换商品有质量问题，请在收到商品7天内联系客服处理。</p>
+
+						</div>
+						<button class="back-btn">返回商品列表</button>
+					</div>
+
+					<!-- 商品列表 -->
+					<div class="products-grid" id="products-grid">
+						<!-- 商品1 -->
+						<div class="product-card" data-category="electronics">
+							<div class="product-image">
+								<img src="img/bi.jpg" alt="华小迪定制笔">
+
+							</div>
+							<div class="product-info">
+								<h3 class="product-title">华小迪定制笔</h3>
+								<p class="product-description">大容量，高颜值，书写不断墨</p>
+								<div class="product-footer">
+									<div class="product-points">5 金币</div>
+									<button class="exchange-btn">立即兑换</button>
+								</div>
+							</div>
+						</div>
+
+						<!-- 商品2 -->
+						<div class="product-card" data-category="home">
+							<div class="product-image">
+								<img src="img/benzi.jpg" alt="华小迪定制笔记本">
+							</div>
+							<div class="product-info">
+								<h3 class="product-title">华小迪定制笔记本</h3>
+								<p class="product-description">小巧便携，线圈设计无折痕</p>
+								<div class="product-footer">
+									<div class="product-points">10 金币</div>
+									<button class="exchange-btn">立即兑换</button>
+								</div>
+							</div>
+						</div>
+
+						<!-- 商品3 -->
+						<div class="product-card" data-category="electronics">
+							<div class="product-image">
+								<img src="img/facaixiangkuang.jpg" alt="发财相框">
+							</div>
+							<div class="product-info">
+								<h3 class="product-title">发财相框</h3>
+								<p class="product-description">发财祝福，桌面摆件</p>
+								<div class="product-footer">
+									<div class="product-points">10 金币</div>
+									<button class="exchange-btn">立即兑换</button>
+								</div>
+							</div>
+						</div>
+
+						<!-- 商品4 -->
+						<div class="product-card" data-category="food">
+							<div class="product-image">
+								<img src="img/xiaohonghuacha.jpg" alt="小红花茶">
+							</div>
+							<div class="product-info">
+								<h3 class="product-title">小红花茶</h3>
+								<p class="product-description">独立茶包，七天不重样</p>
+								<div class="product-footer">
+									<div class="product-points">20 金币</div>
+									<button class="exchange-btn">立即兑换</button>
+								</div>
+							</div>
+						</div>
+						
+						<!-- 商品5 -->
+						<div class="product-card" data-category="fashion">
+							<div class="product-image">
+								<img src="img/chaju.jpg" alt="茶具">
+
+							</div>
+							<div class="product-info">
+								<h3 class="product-title">茶具</h3>
+								<p class="product-description">伴手好礼，尽显优雅</p>
+								<div class="product-footer">
+									<div class="product-points">50 金币</div>
+									<button class="exchange-btn">立即兑换</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</main>
+			</div>
+
+			<footer>
+				<p>华小迪金币商城 &copy; 2025 | 河北华晨药业集团有限公司</p>
+			</footer>
+		</div>
+
+		<script>
+			// 简单的交互效果
+			document.addEventListener('DOMContentLoaded', function() {
+				// 分类切换效果
+				const categories = document.querySelectorAll('.category-list li');
+				const products = document.querySelectorAll('.product-card');
+
+				categories.forEach(category => {
+					category.addEventListener('click', function() {
+						// 移除所有active类
+						categories.forEach(c => c.classList.remove('active'));
+						// 为当前点击的分类添加active类
+						this.classList.add('active');
+
+						const category = this.getAttribute('data-category');
+
+						// 显示/隐藏商品
+						products.forEach(product => {
+							if (category === 'all' || product.getAttribute('data-category') ===
+								category) {
+								product.style.display = 'block';
+							} else {
+								product.style.display = 'none';
+							}
+						});
+					});
+				});
+
+				// 兑换按钮点击效果
+				const exchangeButtons = document.querySelectorAll('.exchange-btn');
+				exchangeButtons.forEach(button => {
+					button.addEventListener('click', function() {
+						const productTitle = this.closest('.product-card').querySelector(
+							'.product-title').textContent;
+						alert(`兑换详情请联系华小迪官方：${productTitle}`);
+					});
+				});
+
+				// 搜索功能
+				const searchInput = document.querySelector('.search-box input');
+				const searchButton = document.querySelector('.search-box button');
+
+				searchButton.addEventListener('click', function() {
+					performSearch();
+				});
+
+				searchInput.addEventListener('keypress', function(e) {
+					if (e.key === 'Enter') {
+						performSearch();
+					}
+				});
+
+				function performSearch() {
+					const searchTerm = searchInput.value.toLowerCase();
+
+					products.forEach(product => {
+						const title = product.querySelector('.product-title').textContent.toLowerCase();
+						const description = product.querySelector('.product-description').textContent
+							.toLowerCase();
+
+						if (title.includes(searchTerm) || description.includes(searchTerm)) {
+							product.style.display = 'block';
+						} else {
+							product.style.display = 'none';
+						}
+					});
+				}
+
+				// 金币规则页面切换功能
+				const ruleLinks = document.querySelectorAll('.rule-link');
+				const rulesSections = document.querySelectorAll('.rules-section');
+				const productsGrid = document.getElementById('products-grid');
+				const backButtons = document.querySelectorAll('.back-btn');
+
+				ruleLinks.forEach(link => {
+					link.addEventListener('click', function(e) {
+						e.preventDefault();
+						const ruleId = this.getAttribute('data-rule');
+
+						// 隐藏商品网格
+						productsGrid.style.display = 'none';
+
+						// 隐藏所有规则部分
+						rulesSections.forEach(section => {
+							section.classList.remove('active');
+						});
+
+						// 显示选中的规则部分
+						document.getElementById(ruleId).classList.add('active');
+					});
+				});
+
+				// 返回按钮功能
+				backButtons.forEach(button => {
+					button.addEventListener('click', function() {
+						// 显示商品网格
+						productsGrid.style.display = 'grid';
+
+						// 隐藏所有规则部分
+						rulesSections.forEach(section => {
+							section.classList.remove('active');
+						});
+					});
+				});
+			});
+		</script>
+	</body>
+</html>
